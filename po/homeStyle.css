@@ -1,0 +1,261 @@
+/* 全局样式设置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Sidebar Style */
+.sidebar-info {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  font-size: 11px;
+  line-height: 1.4;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* 核心布局结构 */
+.page-wrapper {
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  position: relative;
+  width: 85vw; /* 稍微调大一点点 */
+  max-width: 1100px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  /* 1. Banner 改为三列布局 */
+  .sidebar-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 10px;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr; /* 三列：Logo | 信息 | 社交 */
+    gap: 10px;
+    align-items: start;
+    border-bottom: 1px solid #eee;
+    z-index: 100;
+  }
+
+  .logo {
+    font-size: 10px;
+    margin-bottom: 0;
+  }
+
+  .contact-details {
+    font-size: 9px;
+    line-height: 1.2;
+  }
+
+  /* 社交链接单独一列 */
+  .social-links {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .social-links a {
+    font-size: 9px;
+    margin-bottom: 2px;
+  }
+
+  /* 2. 整体内容向上挪动 */
+  .page-wrapper {
+    align-items: flex-start; /* 靠顶对齐 */
+    padding-top: 28vh; /* 距离顶部Banner的距离 */
+  }
+
+  .main-container {
+    width: 90vw;
+  }
+
+  /* 3. 文字根据屏幕缩小，并远离图片 */
+  .nav-label {
+    /* 调整缩放公式，确保在小屏时更小 */
+    font-size: clamp(1rem, 5vw, 1.5rem) !important;
+  }
+
+  /* 调整定位，增加远离图片的空隙 */
+  .label-top {
+    top: -60px;
+  }
+  .label-bottom {
+    bottom: -60px;
+  }
+
+  .label-left {
+    left: 500px; /* 远离左侧边缘 */
+    transform: translateY(-50%) rotate(-90deg);
+  }
+
+  .works-group {
+    right: -15px; /* 远离右侧边缘 */
+  }
+
+  .image-box {
+    width: 50%; /* 进一步缩小图片宽度，留出空间给两侧文字 */
+  }
+
+  /* 4. Hover 出来的子菜单样式调整 */
+  .sub-menu {
+    left: 100%;
+    width: 20%;
+  }
+
+  .sub-menu a {
+    font-size: 1rem; /* 字体变小 */
+    font-weight: 400;
+    line-height: 0.5; /* 缩紧行高 */
+  }
+}
+
+/* 图片区域：缩小比例以腾出更多四周空隙 */
+.image-box {
+  width: 65%; /* 从 70% 降到 65%，增加文字与图片的空隙 */
+
+  background-color: #eee;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* 增加一点质感 */
+}
+
+.image-box img {
+  width: 100%;
+
+  object-fit: cover;
+}
+
+/* 导航文字：更大，间距更远 */
+.nav-label {
+  position: absolute;
+  /* 1. 文字变大：最小值从 1rem 提升到 1.5rem */
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  /* 2. 底部空隙保持一致的关键：消除行高干扰 */
+  line-height: 1;
+}
+
+/* 顶部与底部：拉开距离 */
+.label-top {
+  top: 8%; /* 距离顶部边缘更近，即距离图片更远 */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.label-bottom {
+  bottom: 8%; /* 距离底部边缘更近 */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 左侧：拉开距离 */
+.label-left {
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+/* 右侧 WORKS 组 */
+.works-group {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.label-right {
+  position: static;
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+/* 3. 子菜单：纯净淡入效果 (Fade In) */
+.sub-menu {
+  position: absolute;
+  left: 70%; /* 紧贴 WORKS 旋转后的右侧 */
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* 初始隐藏状态 */
+  opacity: 0;
+  visibility: hidden;
+
+  /* 仅针对透明度进行平滑过渡 */
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+
+/* Hover 触发淡入 */
+.works-group:hover .sub-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sub-menu a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #666;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.sub-menu a:hover {
+  color: #000;
+  text-decoration: underline;
+}

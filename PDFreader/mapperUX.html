@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UX|Wanlin Portfolio</title>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      iframe {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="pdf"></iframe>
+
+    <script>
+      const iframe = document.getElementById("pdf");
+
+      // 如果你的 html 在 /PDFreader/ 下，这样写最稳（相对路径）
+      const PDF_PATH = "assets/mapperUX.pdf";
+      const HASH = "#view=FitH&toolbar=0&navpanes=0";
+
+      function loadPDF() {
+        iframe.src = `${PDF_PATH}?t=${Date.now()}${HASH}`;
+      }
+
+      loadPDF();
+    </script>
+  </body>
+</html>
